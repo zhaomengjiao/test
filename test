@@ -1,0 +1,25 @@
+mport win32com.client as win32
+import xlsx
+
+
+def sendemail(sub,body):
+    xlsx.xlsx()
+    outlook = win32.Dispatch('outlook.application')
+    receivers = ['mengjiaox.zhao@intel.com']
+    mail = outlook.CreateItem(0)
+    #mail.To = receivers[0]
+    for i in receivers:
+        mail.To = i
+        print i
+    mail.Subject = sub.decode('utf-8')
+    mail.Body = body.decode('utf-8')
+    mail.Attachments.Add('C:\\document\\isg_cid-wireless-testing\\protex\\DPDK_Monthly_Report.xlsx')
+    mail.Send()
+
+
+
+if __name__ == '__main__':
+    #xlsx.xlsx()
+    sendemail('DPDK Protex Monthly Report', 'send with file...')
+
+
